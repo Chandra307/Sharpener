@@ -1,0 +1,7 @@
+var a=[9,-5,7,6,-2],n=a.length;
+for(var i=0;i<n;i++){
+var str='';
+for(var j=i;j<n;j++){
+console.log(str=str+a[j];
+}
+}

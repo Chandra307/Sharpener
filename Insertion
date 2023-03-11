@@ -1,0 +1,10 @@
+var c=[],head=[-1,5,3,4,0], n=head.length;
+    for( var a=1;a<=n;a++){
+        for(var b=a;b>0;b=b-1){
+            let pip=head[b];
+            if(head[b]<head[b-1]){
+             head[b]=head[b-1];
+             head[b-1]=pip;
+            }
+        }
+    }console.log(head);

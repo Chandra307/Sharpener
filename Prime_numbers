@@ -1,0 +1,18 @@
+var a=[],h=2;
+for(var c=0;c<19;h++){
+    let flag = true;
+    for(var i=1;i<h;i++){
+        for(var j=i;j<h;j++){
+            if(h===j*i){
+                flag=false;
+                break;
+            }
+        }
+    }
+    if(flag){
+        a[c]=h;
+        c++;
+    }
+}for(var h=0;h<18;h++){
+    console.log(a[h]);
+}

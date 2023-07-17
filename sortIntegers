@@ -1,0 +1,31 @@
+let arr = [1111,7644,1107,6978,8742,1,7403,7694,9193,4401,377,8641,5311,624,3554,6631];
+
+let bits = [];
+for(let a=0;a<arr.length;a++){
+  let c=0;
+  for(let b = arr[a];b>0;b = b>>1){
+    if(b&1 === 1){
+      c++;
+    }
+  }
+  bits.push(c);
+}
+
+for(a=0;a<arr.length;a++){
+  let min = bits[a];
+  let index = a;
+  for(b=a+1;b<arr.length;b++){
+    if(bits[b]<min || (bits[b] === min && arr[b]<arr[index])){
+      min = bits[b];
+      index = b;
+      
+    }
+  }
+  bits[index] = bits[a];
+  bits[a] = min;
+  
+      let temp = arr[index];
+      arr[index] = arr[a];
+      arr[a] = temp;
+}
+console.log(arr);

@@ -1,0 +1,32 @@
+var divide = function(dividend, divisor) {
+  let x = 0;
+  let sign = (dividend<0)^(divisor<0)?-1:1;
+  dividend = Math.abs(dividend);
+  divisor = Math.abs(divisor);
+//   for specific instances, say dividend = 21483647, divisor =    -21483648
+  if(dividend < divisor){
+    return 0;
+  }
+//   To deal with cases like dividend = -2147483648, divisor = -2147483648
+  divisor = divisor>2**31-1?2**31-1:divisor;
+
+    //   using = besides >, for completely divisible numbers.
+  while(dividend>=divisor){
+    let y = 0;
+    while(dividend>=(divisor<<y) && (divisor<<y)>=0){
+        // used ' = ' beside dividend, for dividends that are exponential values of divisors (say:dividend = 16, divisor = 2)
+      y++;
+    }
+    dividend = dividend-(divisor << (y-1));
+    x += 1 << (y-1);
+  }
+//   incorporating the effect of information about quotient
+  let quo = sign*x;
+  if(quo > (2**31)-1){
+    quo = (2**31)-1;
+  }
+  else if(quo < -(2**31)){
+    quo = -(2**31);
+  }
+  return quo;
+};

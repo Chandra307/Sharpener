@@ -1,0 +1,11 @@
+let s = [-5, 7, -3, -4, 9, 10, -1, 11];
+let c=0;
+for(let a=0;a<s.length;a++){
+  if(s[a]>0){
+    if(a !== c){
+      [s[a],s[c]] = [s[c],s[a]];
+    }
+    c++;
+  }
+}
+console.log(s);

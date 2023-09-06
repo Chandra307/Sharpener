@@ -1,0 +1,42 @@
+let products=[];
+
+const fs = require('fs');
+
+module.exports = class Product {
+    constructor(n){
+        this.title = n;
+    }
+    save(){
+        if(fs.existsSync('./products.txt')){
+
+            let old = fs.readFileSync('./products.txt');
+            let gold = JSON.parse(old);
+            gold.push(this);
+            fs.writeFile('products.txt',JSON.stringify(gold), (err) => {
+                if(err){
+                    console.log(err);
+                }
+                console.log(gold, 'writeaunc');
+            })        
+        }
+        else {
+            products.push(this);
+            fs.writeFile('products.txt',JSON.stringify(products), (err) => {
+                if(err){
+                    console.log(err);
+                }
+                console.log(products, 'writeaunc');
+            })        
+        }
+    }
+    static fetchAll(){
+        let data = [];
+        if(fs.existsSync('./products.txt')){
+
+            data = fs.readFileSync('./products.txt');
+            data = JSON.parse(data);
+            console.log(data,'read');
+        }
+        return data;
+    }    
+}

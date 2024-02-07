@@ -1,0 +1,35 @@
+function proSort(S, output) {  
+  S = [...S];
+  S.sort((a, b) => a.charCodeAt() - b.charCodeAt());
+  let smallsStack = '';
+  let capitalsStack = '';
+  for (let elem of S) {
+    elem.charCodeAt() > 96 && elem.charCodeAt() < 123 ?
+     smallsStack = elem + smallsStack : capitalsStack = elem + capitalsStack;
+  }
+  smallsStack = [...smallsStack];
+  capitalsStack = [...capitalsStack];
+  S = [];
+  while (smallsStack.length && capitalsStack.length) {
+    pushTopAndPop(S, capitalsStack);
+    pushTopAndPop(S, smallsStack);
+  }
+  capitalsStack.length ? pushTheRest(S, capitalsStack) : pushTheRest(S, smallsStack);
+  let temp = '';
+  for (let string of S) {
+    temp += string;
+  }
+  S = temp;
+  console.log(S, S.length, S === output);
+}
+function pushTheRest(array, stack) {
+  while (stack.length) {
+    pushTopAndPop(array, stack);
+  }
+}
+function pushTopAndPop(array, stack) {
+  array.push(stack[stack.length - 1]);
+  stack.pop();
+}
+proSort('bAwutndekWEdkd', 'AbEdWddekkntuw');
+proSort('AiBFR', 'AiBFR');
